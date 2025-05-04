@@ -13,6 +13,6 @@ jobs:
 
       - name: Running the script
         run: |
-            chmod u+x ./script.sh
+            chmod u+x script.sh
             ./script.sh
       
