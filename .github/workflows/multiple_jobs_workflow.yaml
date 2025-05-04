@@ -35,6 +35,8 @@ jobs:
     Job3:
         runs-on: ubuntu-latest
         needs: Job2
+        environment:
+          name: production
         steps:
         - name: Dowload dragon.txt
           uses: actions/download-artifact@v4
