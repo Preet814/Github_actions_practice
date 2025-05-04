@@ -22,6 +22,9 @@ jobs:
       CONTAINER_REGISTRY: docker.io
       DOCKER_USERNAME: siddharthi
       IMAGE_NAME: github-actions-nginx
+    concurrency: 
+        cancel-in-progress: true
+        group: production-deployment
     needs: docker
     runs-on: ubuntu-latest
     steps:
