@@ -23,7 +23,7 @@ jobs:
       DOCKER_USERNAME: siddharthi
       IMAGE_NAME: github-actions-nginx
     concurrency: 
-        cancel-in-progress: true
+        cancel-in-progress: false
         group: production-deployment
     needs: docker
     runs-on: ubuntu-latest
