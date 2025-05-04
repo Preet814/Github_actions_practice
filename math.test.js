@@ -1,5 +1,3 @@
-// math.test.js
-
 const { add, subtract } = require('./math');
 
 test('adds 2 + 3 to equal 5', () => {
