@@ -1,0 +1,21 @@
+name: My first workflow
+on: 
+  push:
+    
+jobs:
+    first_job:
+      
+      runs-on: ubuntu-latest
+
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: welcome message
+        run: echo "hello world"
+      
+      - name: List files
+        run: ls
+
+      - name: read files
+        run : cat README.md
