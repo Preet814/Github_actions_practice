@@ -11,11 +11,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.2.2
 
-      - name: welcome message
-        run: echo "hello world"
-      
-      - name: List files
-        run: ls
-
-      - name: read files
-        run : cat README.md
+      - name: welcome message, listing of files and read files
+        run: |
+          echo "hello world"
+          ls
+          cat README.md
