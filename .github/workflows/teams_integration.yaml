@@ -33,6 +33,12 @@ jobs:
 
       - name: Test file exists
         run: grep -i "dragon" dragon.txt
+    
+      - name: Notify Teams - Awaiting Manual Approval
+        run: |
+          curl -H 'Content-Type: application/json' \
+          -d "{\"text\": \"Manual approval is required for Job3 (production) on commit \`${{ github.sha }}\` in branch \`${{ github.ref_name }}\`.\"}" \
+          ${{ secrets.TEAMS_WEBHOOK_URL }}
 
   Job3:
     runs-on: ubuntu-latest
@@ -40,11 +46,6 @@ jobs:
     environment:
       name: production
     steps:
-      - name: Notify Teams - Awaiting Manual Approval
-        run: |
-          curl -H 'Content-Type: application/json' \
-          -d "{\"text\": \"🟡 *Manual Approval Required*: Job3 is waiting for *production* approval on commit \`${{ github.sha }}\` in branch \`${{ github.ref_name }}\`\"}" \
-          ${{ secrets.TEAMS_WEBHOOK_URL }}
 
       - name: Download dragon.txt
         uses: actions/download-artifact@v4
@@ -58,8 +59,6 @@ jobs:
         if: always()
         run: |
           STATUS="${{ job.status }}"
-          COLOR="🟢"
-          if [[ "$STATUS" == "failure" ]]; then COLOR="🔴"; fi
           curl -H 'Content-Type: application/json' \
-          -d "{\"text\": \"${COLOR} *Production Complete*: Job3 finished with status: *${STATUS}* on commit \`${{ github.sha }}\` in branch \`${{ github.ref_name }}\`\"}" \
+          -d "{\"text\": \"Job3 (production) has completed with status: ${STATUS}. Commit: \`${{ github.sha }}\`, Branch: \`${{ github.ref_name }}\`.\"}" \
           ${{ secrets.TEAMS_WEBHOOK_URL }}
