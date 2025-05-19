@@ -1,7 +1,6 @@
 name: Terraform deploy on aws
 
-on: 
-  push:
+on: push
 
 jobs:
   CheckOut:
