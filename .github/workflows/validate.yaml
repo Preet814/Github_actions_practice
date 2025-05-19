@@ -1,0 +1,28 @@
+name: Terraform deploy on aws
+
+on:
+  push:
+    branches:
+      - terraform 
+
+jobs:
+  CheckOut:
+    runs-on: self-hosted
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: set up terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform init
+        run: terraform init
+        working-directory: ./Terraform
+
+      - name: Terraform format
+        run: terraform fmt
+        working-directory: ./Terraform
+
+      - name: Terraform validate
+        run: terraform validate
+        working-directory: ./Terraform
