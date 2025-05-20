@@ -6,8 +6,7 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+pool: demo-project-2-agent-pool
 
 steps:
 - script: echo Hello, world!
